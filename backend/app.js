@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/api/products", ProductsRoutes); 
+app.use("/api/employee", EmployeeRoutes)
 
 //Exporto la constante para usar express en todos lados.
 export default app;
