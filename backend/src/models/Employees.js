@@ -53,7 +53,7 @@ const employeesSchema = new Schema({
     },
 
     password:{
-        type: Date,
+        type: String,
         require: true,
         minlenght: 6 //para poner un minimo de caracteres
     },
@@ -68,8 +68,8 @@ const employeesSchema = new Schema({
     dui:{
         type: String,
         require: true,
-        unique: true,
-        match: [/^\d{8}-\d$/, "número de dui no válido"] //validar dui
+        unique: true
+        //match: [/^\d{8}-\d$/, "número de dui no válido"] //validar dui
     },
 
     isssNumber:{

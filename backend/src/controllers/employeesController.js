@@ -20,7 +20,7 @@ employeesController.postEmployees = async (req, res) =>{
 
 //DELETE
 employeesController.deleteEmployees = async (req, res) =>{
-    await employeesModel.findByIdAndDelete(req.params.id)
+    await EmployeesModel.findByIdAndDelete(req.params.id)
 
     res.json({message: "Product deleted"})
 }
@@ -28,11 +28,10 @@ employeesController.deleteEmployees = async (req, res) =>{
 //UPDATE
 employeesController.putEmployees = async (req, res) =>{
     const {name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified} = req.body;
-    const updateEmployees = await employeesModel.findByIdAndUpdate(req.params.id, {name, lastName, birthday, email, address, 
-        hireDate, password, telephone, dui, isssNumber, isVerified}, {new: true})
+    const updateEmployees = await EmployeesModel.findByIdAndUpdate(req.params.id, {name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified}, {new: true})
 
         res.json({message: "Employee updated successfully"})
 
 };
 
-export default employeesController
+export default employeesController;
