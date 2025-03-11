@@ -1,6 +1,5 @@
 const clientsController = {};
 
-import Clients from "../models/Clients.js";
 import clientsModel from "../models/Clients.js";
 
 //SELECT
