@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 //importo el archivo config con todas las variables
 import { config } from "./src/config.js";
 
+
 //conectar la base de datos
-mongoose.connect(config.MONGO_URI);
+//esta dirección se ubica en la carpeta config
+mongoose.connect(config.db.URI);
 
 
 

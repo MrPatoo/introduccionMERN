@@ -1,4 +1,14 @@
-export const config={
-    PORT : 4000,
-    MONGO_URI: "mongodb://localhost:27017/zgasdb",
-};
+import dotenv from "dotenv";
+
+dotenv.config();
+
+//Información dentro de .env
+export const config= {
+    db:{
+        URI: process.env.MONGO_URI
+    },
+
+    server:{
+        port: process.env.PORT
+    }
+}
