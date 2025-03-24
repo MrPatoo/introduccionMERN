@@ -1,0 +1,52 @@
+import EmployeesModel from "../models/Employees.js";    
+import bcryptjs from "bcryptjs"
+import  Jsonwebtoken  from "jsonwebtoken";
+import { config } from "../config.js";
+
+const registerEmployeesController ={};
+
+registerEmployeesController.register = async (req, res) =>{
+    const {name, lastName, birthday, email, address, hireDate, password, telephone, dui, isssNumber, isVerified} = req.body
+    
+    try{
+        //verificamos si el empleado ya existe
+        const existEmployee=await EmployeesModel.findOne({email})
+        
+        if(existEmployee){
+            return res.json({message: "El empleado ya existe"})
+        }
+
+        
+        //encriptar
+        const passwordHash = await bcryptjs.hash(password, 10)
+
+        //guardamos el empleado nuevo                                                                      para encriptar
+        const newEmployee = new EmployeesModel({name, lastName, birthday, email, address, hireDate, password: passwordHash, telephone, dui, isssNumber, isVerified})
+        await newEmployee.save();
+
+
+        //-->TOKEN<--
+        Jsonwebtoken.sign(
+            //1-que voy a guardar
+            {id: newEmployee._id},
+
+            //2-secreto
+            config.JWT.secret,
+
+            //3-cuando expira
+            {expiresIn: config.JWT.expiresIn},
+
+            //4-funcion flecha que espera el error o el token
+            (error, token) =>{
+                if(error) console.log(error)
+                    res.cookie("authToken", token)
+            }
+
+        )
+
+    }catch(error){
+        console.log(error);
+    }
+}
+
+export default registerEmployeesController;
