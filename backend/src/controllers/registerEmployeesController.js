@@ -1,6 +1,6 @@
 import EmployeesModel from "../models/Employees.js";    
-import bcryptjs from "bcryptjs"
-import  Jsonwebtoken  from "jsonwebtoken";
+import bcryptjs from "bcryptjs" //para encriptar
+import  Jsonwebtoken  from "jsonwebtoken"; //para generar token
 import { config } from "../config.js";
 
 const registerEmployeesController ={};
@@ -25,7 +25,8 @@ registerEmployeesController.register = async (req, res) =>{
         await newEmployee.save();
 
 
-        //-->TOKEN<--
+        //-->TOKEN<-------------------------------------------------------------------------------------
+        
         Jsonwebtoken.sign(
             //1-que voy a guardar
             {id: newEmployee._id},
@@ -40,6 +41,7 @@ registerEmployeesController.register = async (req, res) =>{
             (error, token) =>{
                 if(error) console.log(error)
                     res.cookie("authToken", token)
+                    res.json({message: "Empleado registrado :D"})
             }
 
         )
