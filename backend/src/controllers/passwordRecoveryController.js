@@ -11,6 +11,7 @@ import { verify } from "crypto";
 //1- Creo un array de funciones
 const passwordRecoveryController = {};
 
+//ENVIAR CODIGO--------------------------------------------------------------------------------------
 passwordRecoveryController.requestCode = async (req, res) => {
   const { email } = req.body;
 
@@ -62,6 +63,8 @@ passwordRecoveryController.requestCode = async (req, res) => {
   } catch (error) {}
 };
 
+
+//VERIFICAR CODIGO----------------------------------------------------------------------------------------
 passwordRecoveryController.verfiedCode = async(req, res)=>{
     //pedir codigo
     const {code} = req.body;
@@ -107,5 +110,64 @@ passwordRecoveryController.verfiedCode = async(req, res)=>{
     }
 
 }
+
+//CAMBIAR LA CONTRASEÑA--------------------------------------------------------------------------------
+passwordRecoveryController.newPassword = async(req, res)=>{
+    const {newPassword} = req.body;
+    try {
+        //extraer el token de las cookies
+        const token = req.cookies.tokenRecoveryCode;
+
+        //desglozar lo que tiene el codigo adentro ----- espera el token y el secreto
+        const decoded = jsonwebtoken.verify(token, config.JWT.secret)
+
+        //accedemos a la variable verified para ver qu valor tiene
+        if(!decoded.verify){
+            return res.json({message: "Code no verified"})
+        }
+
+        //extraer el correo y tipo de usuario
+        const {email, userType} = decoded;
+
+        let user;
+
+        //buscamos al usuario dependiendo del userType
+        if(userType === "clients"){
+            user = await clientsModel.findOne ({email})
+
+        }else if(userType === "employees"){
+            user = await employeeModel.findOne ({email})
+
+        }
+
+        //encriptar la contraseña
+        const hashPassword = await bcryptjs.hash(newPassword, 10)
+
+        //actualizar la contraseña
+        let updateUser;
+        if(userType === "clients"){
+            updateUser= await clientsModel.findByIdAndUpdate(
+                {email},
+                {password: hashPassword}, 
+                {new: true}
+            )
+        }else if(userType === "employees"){
+            updateUser= await employeeModel.findByIdAndUpdate(
+            {email},
+            {password: hashPassword},
+            {new: true}
+            )
+
+        }
+
+        res.clearCookie("tokenRecoveryCode");
+        res.json({message: "Password updated successfully"});
+        
+    } catch (error) {
+        console.log("error: "+ error)
+    }
+
+}
+
 
 export default passwordRecoveryController;
