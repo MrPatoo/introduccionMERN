@@ -33,6 +33,8 @@ app.use("/api/logout", logoutRouters);
 app.use("/api/registerClients", registerClients);
 app.use("/api/passwordRecovery", passwordRecoveryRoutes);
 
+app.use("/api/blog")
+
 
 //Exporto la constante para usar express en todos lados.
 export default app;
