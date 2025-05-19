@@ -13,6 +13,8 @@ import logoutRouters from "./src/routes/logout.js"
 import registerClients from "./src/routes/registerClients.js"
 import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
 import blog from "./src/routes/blog.js";
+import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
+
 
 
 //Creo una constante que es igual a la libreria que acabo de crear, y la ejecuto.
@@ -23,17 +25,18 @@ app.use(express.json());
 //para usar las cookies
 app.use (cookieParser());
 
-app.use("/api/products", ProductsRoutes); 
+//validateAuthToken es para validar el tipo de usuarios que pueden usar esa ruta.
+app.use("/api/products", validateAuthToken(["employee", "admin"]), ProductsRoutes); 
 app.use("/api/employee", EmployeesRoutes);
 app.use("/api/clients", ClientsRoutes);
 app.use("/api/branches", BranchesRoutes);
-app.use("/api/reviews", ReviewsRouters);
+app.use("/api/reviews", validateAuthToken(["employee"]), ReviewsRouters);
 app.use("/api/registerEmployees", registerEmployees);
 app.use("/api/login", loginRouters);
 app.use("/api/logout", logoutRouters);
 app.use("/api/registerClients", registerClients);
 app.use("/api/passwordRecovery", passwordRecoveryRoutes);
-app.use("/api/blog", blog);
+app.use("/api/blog", validateAuthToken(["employee"]), blog);
 
 
 //Exporto la constante para usar express en todos lados.
