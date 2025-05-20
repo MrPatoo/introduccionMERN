@@ -20,7 +20,7 @@ clientsController.postClients = async(req, res) =>{
 
 //DELETE
 clientsController.deleteClients = async(req,res) =>{
-    await clientsModel.findByIdAndDelete(req.param.id)
+    await clientsModel.findByIdAndDelete(req.params.id)
 
     res.json({message: "Client deleted"})
 }
