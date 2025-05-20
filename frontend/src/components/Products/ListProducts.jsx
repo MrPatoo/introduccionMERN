@@ -2,8 +2,8 @@ import React from "react";
 import CardProducts from "./CardProducts";
 
 const ListProducts = ({
-  deleteProducts,
-  updateProducts,
+  deleteProduct,
+  updateProduct,
   loading,
   products,
 }) => {

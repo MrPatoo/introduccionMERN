@@ -12,7 +12,7 @@ const useDataProducts = () => {
       const [description, setDescription] = useState("");
       const [price, setPrice] = useState("");
       const [stock, setStock] = useState("");
-      const [errorEmpleado, setError] = useState(null);
+      const [errorProduct, setError] = useState(null);
       const [success, setSuccess] = useState(null);
       const [loading, setLoading] = useState(false);
       const [products, setProducts] = useState([]);
@@ -66,7 +66,7 @@ const useDataProducts = () => {
     
           const data = await response.json();
             toast.success('Producto registrado');
-          setEmployees(data);
+          setProducts(data);
           setSuccess("Producto registrado correctamente");
           cleanData();
           fetchData();
@@ -80,7 +80,7 @@ const useDataProducts = () => {
         }
       };
     
-      //funcion para obtener los datos de los empleados
+      //para el GET*************************
       const fetchData = async () => {
         try {
           const response = await fetch(ApiProducts);
@@ -89,7 +89,7 @@ const useDataProducts = () => {
           }
           const data = await response.json();
           console.log(data);
-          setEmployees(data);
+          setProducts(data);
         } catch (error) {
           console.error("Error fetching data:", error);
         } finally {
@@ -109,17 +109,17 @@ const useDataProducts = () => {
             `${ApiProducts}/${id}`,
             {
               method: "DELETE",
-              body: JSON.stringify(deleteEmployee),
+              body: JSON.stringify(deleteProduct),
             }
           );
     
           if (!response.ok) {
-            throw new Error("Failed to delete employee");
+            throw new Error("Failed to delete product");
           }
     
           const result = await response.json();
           console.log("Deleted:", result);
-    toast.success('Empleado eliminado');
+    toast.success('Producto eliminado');
           // Actualizar la lista después de borrar
           //setEmployees((prev) => prev.filter(emp => emp._id !== id));
           fetchData();
@@ -128,17 +128,13 @@ const useDataProducts = () => {
         }
       };
     
-      const updateEmployee = async (dataEmployee) => {
-        setId(dataEmployee._id);
-        setName(dataEmployee.name);
-        setLastName(dataEmployee.lastName);
-        setEmail(dataEmployee.email);
-        setTelephone(dataEmployee.telephone);
-        setDui(dataEmployee.dui);
-        setAddress(dataEmployee.address);
-        setBirthdate(dataEmployee.birthdate);
-        setHireDate(dataEmployee.hireDate);
-        setIsssNumber(dataEmployee.isssNumber);
+      //para el UPDATE ************************************************
+      const updateProduct = async (dataProduct) => {
+        setId(dataProduct._id);
+        setName(dataProduct.name);
+        setDescription(dataProduct.description);
+        setPrice(dataProduct.price);
+        setStock(dataProduct.stock);
         setError(null);
         setSuccess(null);
         setActiveTab("form");
@@ -148,21 +144,16 @@ const useDataProducts = () => {
         e.preventDefault();
     
         try {
-          const updatedEmployee = {
+            //producto ya actualizado
+          const updatedProduct = {
             name,
-            lastName,
-            email,
-            password,
-            telephone,
-            dui,
-            address,
-            birthdate,
-            hireDate,
-            isssNumber,
+            description,
+            price,
+            stock,
           };
     
           const response = await fetch(
-            `${ApiEmployees}/${id}`,
+            `${ApiProducts}/${id}`,
             {
               method: "PUT",
               headers: {
@@ -173,11 +164,11 @@ const useDataProducts = () => {
           );
     
           if (!response.ok) {
-            throw new Error("Error al actualizar el empleado");
+            throw new Error("Error al actualizar el producto");
           }
     
-          toast.success('Empleado actualizado');
-          setSuccess("Empleado actualizado correctamente");
+          toast.success('producto actualizado');
+          setSuccess("producto actualizado correctamente");
           cleanData();
           setId(""); // Limpiar el ID
           setActiveTab("list");
@@ -196,41 +187,33 @@ const useDataProducts = () => {
 return {
     activeTab,
     setActiveTab,
+
+    //elementos de la tabla////////
     id,
     setId,
     name,
     setName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    telephone,
-    setTelephone,
-    dui,
-    setDui,
-    address,
-    setAddress,
-    birthdate,
-    setBirthdate,
-    hireDate,
-    setHireDate,
-    isssNumber,
-    setIsssNumber,
-    errorEmpleado,
+    description,
+    setDescription,
+    price,
+    setPrice,
+    stock,
+    setStock,
+   //////////////////////////////
+
+    errorProduct,
     setError,
     success,
     setSuccess,
     loading,
     setLoading,
-    employees,
-    setEmployees,
+    products,
+    setProducts,
     cleanData,
     handleSubmit,
     fetchData,
-    deleteEmployee,
-    updateEmployee,
+    deleteProduct,
+    updateProduct,
     handleUpdate,
 };
 

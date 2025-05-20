@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../button";
 
 const RegisterProducts = ({
   id,
@@ -73,7 +74,7 @@ const RegisterProducts = ({
               className="block text-gray-700 font-bold mb-2"
               htmlFor="password"
             >
-              Contraseña
+              stock
             </label>
             <input
               type="number"
@@ -88,19 +89,23 @@ const RegisterProducts = ({
           
 
         {id ? (
-            <button 
+            <Button 
             type="submit"
+            label={"editar info"}
             actionButton={(e) => {
                 handleUpdate(e);
-              }}>Editar info</button>
+              }}/>
          
         ) : (
-          <button
+          <Button
           type="submit"
-          actionButton={(e)=>{
-                handleSubmit(e)
-          }}>Registrar</button>
+          label={"registrar"}
+          actionButton={(e) => {
+            handleSubmit(e);
+            alert("algo")
+          }}/>
         )}
+        </div>
       </form>
     </>
   );

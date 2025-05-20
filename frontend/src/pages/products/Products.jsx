@@ -3,68 +3,60 @@ import RegisterProducts from "../../components/Products/RegisterProducts";
 import ListProducts from "../../components/Products/ListProducts";
 import {Toaster} from 'react-hot-toast';
 
-import useDataEmployees from "../components/Employees/hooks/useDataEmployees";
 
-const Employees = () => {
+import useDataProducts from "../../components/Products/hooks/useDataProducts";
+const Products = () => {
 
   /*Efecto para cambiar el título de la página
   cuando se carga la página*/
     useEffect(() => {
-    document.title = 'Empleados';
+    document.title = 'PRODUCTOS';
   }, []);
 
   const {
     activeTab,
     setActiveTab,
+
+    //elementos de la tabla////////
     id,
     setId,
     name,
     setName,
-    lastName,
-    setLastName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    telephone,
-    setTelephone,
-    dui,
-    setDui,
-    address,
-    setAddress,
-    birthdate,
-    setBirthdate,
-    hireDate,
-    setHireDate,
-    isssNumber,
-    setIsssNumber,
-    errorEmpleado,
+    description,
+    setDescription,
+    price,
+    setPrice,
+    stock,
+    setStock,
+   //////////////////////////////
+   
+    errorProduct,
     setError,
     success,
     setSuccess,
     loading,
     setLoading,
-    employees,
-    setEmployees,
+    products,
+    setProducts,
     cleanData,
     handleSubmit,
     fetchData,
-    deleteEmployee,
-    updateEmployee,
+    deleteProduct,
+    updateProduct,
     handleUpdate,
   } = useDataProducts();
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">Empleados</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-4">Productos</h1>
         <div>
           <div className="flex border-b border-gray-200 mb-4">
             <button
               className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:border-b-2 focus:border-blue-500"
               onClick={() => setActiveTab("list")}
             >
-              Lista de empleados
+              Lista de productos
             </button>
             <button
               className="px-4 py-2 text-gray-600 hover:text-gray-800 focus:outline-none focus:border-b-2 focus:border-blue-500"
@@ -73,56 +65,47 @@ const Employees = () => {
                 cleanData();
               }}
             >
-              Gestionar Empleados
+              Gestionar productos
             </button>
           </div>
           <div>
             {activeTab === "list" && (
               <div>
-                <ListEmployees
+                <ListProducts
                   setId={setId}
                   setActiveTab={setActiveTab}
-                  updateEmployee={updateEmployee}
+                  updateProducts={updateProduct}
                   handleUpdate={handleUpdate}
-                  deleteEmployee={deleteEmployee}
-                  employees={employees}
+                  deleteProducts={deleteProduct}
+                  products={products}
                   loading={loading}
                 />
               </div>
             )}
             {activeTab === "form" && (
               <div>
-                <RegisterEmployees
+                <RegisterProducts
+                ///////////////LO QUE ESTA EN LA TABLA/////////////////
                   id={id}
                   setId={setId}
                   name={name}
                   setName={setName}
-                  lastName={lastName}
-                  setLastName={setLastName}
-                  email={email}
-                  setEmail={setEmail}
-                  password={password}
-                  setPassword={setPassword}
-                  telephone={telephone}
-                  setTelephone={setTelephone}
-                  dui={dui}
-                  setDui={setDui}
-                  address={address}
-                  setAddress={setAddress}
-                  birthdate={birthdate}
-                  setBirthdate={setBirthdate}
-                  hireDate={hireDate}
-                  setHireDate={setHireDate}
-                  isssNumber={isssNumber}
-                  setIsssNumber={setIsssNumber}
-                  errorEmpleado={errorEmpleado}
+                  description={description}
+                  setDescription={setDescription}
+                  price={price}
+                  setPrice={setPrice}
+                  stock={stock}
+                  setStock={setStock}
+                  //////////////////////////////////////////////////////
+                  
+                  errorProduct={errorProduct}
                   setError={setError}
                   success={success}
                   setSuccess={setSuccess}
                   loading={loading}
                   setLoading={setLoading}
-                  employees={employees}
-                  setEmployees={setEmployees}
+                  products={products}
+                  setProducts={setProducts}
                   cleanData={cleanData}
                   handleSubmit={handleSubmit}
                   handleUpdate={handleUpdate}
@@ -141,4 +124,4 @@ const Employees = () => {
   );
 };
 
-export default Employees;
+export default Products;

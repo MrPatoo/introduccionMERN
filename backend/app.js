@@ -16,6 +16,13 @@ import blog from "./src/routes/blog.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 import cors from "cors"
 
+ 
+
+
+//Creo una constante que es igual a la libreria que acabo de crear, y la ejecuto.
+const app = express();
+
+
 
 app.use(
     cors({
@@ -23,11 +30,7 @@ app.use(
         credentials: true,
     })
 )
-
-
-//Creo una constante que es igual a la libreria que acabo de crear, y la ejecuto.
-const app = express();
-
+   
 app.use(express.json());
 
 //para usar las cookies
