@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button";
+import Button from "../Button";
 
 const RegisterProducts = ({
   id,
@@ -93,7 +93,7 @@ const RegisterProducts = ({
             type="submit"
             label={"editar info"}
             actionButton={(e) => {
-                handleUpdate(e);
+              handleUpdate(e); console.log("funciona")
               }}/>
          
         ) : (
@@ -101,7 +101,7 @@ const RegisterProducts = ({
           type="submit"
           label={"registrar"}
           actionButton={(e) => {
-            handleSubmit(e);
+            handleSubmit(e); console.log("funciona")
             alert("algo")
           }}/>
         )}

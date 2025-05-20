@@ -102,12 +102,13 @@ const useDataProducts = () => {
       }, []);
     
 
+
       //para DELETE*******************************************
       const deleteProduct = async (id) => {
         try {
           const response = await fetch(
             `${ApiProducts}/${id}`,
-            {
+            { 
               method: "DELETE",
               body: JSON.stringify(deleteProduct),
             }
@@ -128,7 +129,7 @@ const useDataProducts = () => {
         }
       };
     
-      //para el UPDATE ************************************************
+      //para el UPDATE ****************************************************************
       const updateProduct = async (dataProduct) => {
         setId(dataProduct._id);
         setName(dataProduct.name);
@@ -141,6 +142,8 @@ const useDataProducts = () => {
       };
     
       const handleUpdate = async (e) => {
+        console.log("update funcional")
+
         e.preventDefault();
     
         try {
@@ -159,7 +162,7 @@ const useDataProducts = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(updatedEmployee),
+              body: JSON.stringify(updatedProduct),
             }
           );
     
@@ -173,10 +176,12 @@ const useDataProducts = () => {
           setId(""); // Limpiar el ID
           setActiveTab("list");
           fetchData(); // Volver a cargar la lista
+
+
         } catch (error) {
           setError(error.message);
           alert("Error al actualizar el empleado");
-          console.error("Error:", errorEmpleado);
+          console.error("Error:", errorProduct);
         } finally {
           setLoading(false);
         }

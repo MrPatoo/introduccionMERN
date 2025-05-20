@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button";
 
 const CardProducts = ({ product, deleteProduct, updateProduct }) => {
   if (!product) {
@@ -24,17 +25,21 @@ const CardProducts = ({ product, deleteProduct, updateProduct }) => {
         <p>id: {product._id}</p>
 
 
+        <Button 
+        type="button"
+        label={"Eliminar"}
+        actionButton={() =>{deleteProduct(product._id), console.log("funciona")} }
+        />
 
-<button
-actionButton={()=> deleteProduct(product._id)}>
-    Eliminar
-</button>
+                        <Button 
+                        type="button"
+        label={"Editar Información"}
+        actionButton={() =>{updateProduct(product);console.log("funciona")} }
+        colorClass={"warning"}
+        />
 
-<button
-actionButton={()=> updateProduct(product._id)}>
-    Editar
-</button>
-                    
+
+               
 
 
       </div>

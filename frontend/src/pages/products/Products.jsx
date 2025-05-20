@@ -74,9 +74,9 @@ const Products = () => {
                 <ListProducts
                   setId={setId}
                   setActiveTab={setActiveTab}
-                  updateProducts={updateProduct}
+                  updateProduct={updateProduct}
                   handleUpdate={handleUpdate}
-                  deleteProducts={deleteProduct}
+                  deleteProduct={deleteProduct}
                   products={products}
                   loading={loading}
                 />

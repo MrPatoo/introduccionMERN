@@ -22,6 +22,7 @@ const Button = ({ label, actionButton, colorClass, type="button" }) => {
       type={type}
       className={className}
       onClick={actionButton}
+      
     >
       {label}
     </button>
