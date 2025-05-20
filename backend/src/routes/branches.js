@@ -9,6 +9,5 @@ router.route("/")
 
 router.route("/:id")
 .put(branchesController.putBranches)
-.delete(branchesController.deleteBranches )
-
+.delete(branchesController.deleteBranches)
 export default router;

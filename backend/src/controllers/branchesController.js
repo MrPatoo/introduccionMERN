@@ -18,12 +18,6 @@ branchesController.postBranches = async(req, res)=>{
     res.json({message: "branch saved"})
 }
 
-//DELETE
-branchesController.deleteBranches =async(req, res) =>{
-    await branchesModel.findByIdAndDelete(req.param.id)
-
-    res.json({message: "Branche deleted"})
-}
 
 //UPDATE
 branchesController.putBranches = async(req, res) =>{
@@ -33,4 +27,11 @@ branchesController.putBranches = async(req, res) =>{
     res.json({message: "Branch updated successfully"})
 }
 
+
+//DELETE
+branchesController.deleteBranches = async (req, res) =>{
+    await branchesModel.findByIdAndDelete(req.params.id)
+
+    res.json({message: "Product deleted"})
+}
 export default branchesController;
