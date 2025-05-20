@@ -5,6 +5,7 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes, useLocation } from "react-router-dom";
 import NavBar from './components/navbar';
 import Products from './pages/products/Products';
+import Branches from './pages/branches/Branches';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
      <NavBar />
       <Routes>
         <Route path="/products" element={<Products/>} />
-        <Route path="/branches" element={<p>hola2</p>} />
+        <Route path="/branches" element={<Branches/>} />
       </Routes>
     </Router>
     </>

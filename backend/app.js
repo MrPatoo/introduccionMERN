@@ -36,6 +36,7 @@ app.use(express.json());
 //para usar las cookies
 app.use (cookieParser());
 
+//SE QUITO LA SEGURIDAD DEL LOS ROLES
 //validateAuthToken es para validar el tipo de usuarios que pueden usar esa ruta.
 app.use("/api/products", ProductsRoutes); 
 app.use("/api/employee", EmployeesRoutes);
