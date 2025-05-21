@@ -18,10 +18,11 @@
 .navbar ul{
 display: flex;
 flex-direction: row;
-
-
-
 }
+
+.navbar a{
+}
+
 .navbar li{
     color: black;
     background-color: rgb(121, 179, 245);
@@ -30,6 +31,7 @@ flex-direction: row;
     margin-right: 20px ;
     text-decoration: none;
     list-style: none;
+    border-radius: 20px; 
 
 }
 
