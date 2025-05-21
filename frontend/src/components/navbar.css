@@ -1,0 +1,40 @@
+*{
+    text-decoration: none;
+    color: black;
+}
+
+.navbar{
+    background-color: rgb(147, 193, 245);
+    justify-content: center;
+    display: flex;
+    width: 100%;
+    margin: 0px;
+    margin-left: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navbar ul{
+display: flex;
+flex-direction: row;
+
+
+
+}
+.navbar li{
+    color: black;
+    background-color: rgb(121, 179, 245);
+    padding: 20px;
+    margin-left: 20px ;
+    margin-right: 20px ;
+    text-decoration: none;
+    list-style: none;
+
+}
+
+.contenedor{
+    display: flex;
+flex-direction: row;
+}
+
