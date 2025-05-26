@@ -4,7 +4,7 @@ import toast, {Toaster} from 'react-hot-toast';
 
 const useDataProducts = () => {
 
-    const ApiProducts="http://localhost:4000/api/products";
+    const ApiProducts="https://zgas-cgmx.onrender.com/api/products";
  
     const [activeTab, setActiveTab] = useState("list");
       const [id, setId] = useState("");

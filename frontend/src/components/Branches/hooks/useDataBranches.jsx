@@ -4,7 +4,7 @@ import toast, {Toaster} from 'react-hot-toast';
 
 const UseDataBranches = () => {
 
-    const ApiBranches="http://localhost:4000/api/branches";
+    const ApiBranches="https://zgas-cgmx.onrender.com/api/branches";
  
     const [activeTab, setActiveTab] = useState("list");
       const [id, setId] = useState("");
