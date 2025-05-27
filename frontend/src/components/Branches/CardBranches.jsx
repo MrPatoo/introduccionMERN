@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button";
+import Button from "../Button1";
 
 const CardBranches = ({ branches, deleteBranch, updateBranch }) => {
   if (!branches) {

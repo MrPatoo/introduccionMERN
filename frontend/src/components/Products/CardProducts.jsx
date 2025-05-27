@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button";
+import Button from "../Button1";
 
 const CardProducts = ({ product, deleteProduct, updateProduct }) => {
   if (!product) {
