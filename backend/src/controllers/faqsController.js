@@ -20,12 +20,16 @@ faqsController.postFaqs = async(req, res) =>{
     try {
         //esto es para validar que se pongan todos los datos
         if(!question || !answer || !level || !isActive){
-            return res.status(400).json({message: "Ingrese datos validos"})
+            return res.status(400).json({message: "Ingrese datos validos"});
         }
 
         //esto es para validar que el nivel tenga los valores correctos
         if(level > 5 || level < 1){
-            return res.status(400).json({message: "Ingrese un nivel válido"})
+            return res.status(400).json({message: "Ingrese un nivel válido"});
+        }
+
+        if(question.length < 4 || answer.length < 4){
+            return res.status(400).json({message: "Debe tener un minimo de 4 caracteres"});
         }
 
         //GUARDAMOS EN LA BASE DE DATOS
