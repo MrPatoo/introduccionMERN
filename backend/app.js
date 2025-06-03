@@ -15,6 +15,7 @@ import passwordRecoveryRoutes from "./src/routes/passwordRecovery.js";
 import blog from "./src/routes/blog.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 import cors from "cors"
+import faqsRoutes from "./src/routes/faqs.js";
 
  
 
@@ -49,6 +50,7 @@ app.use("/api/logout", logoutRouters);
 app.use("/api/registerClients", registerClients);
 app.use("/api/passwordRecovery", passwordRecoveryRoutes);
 app.use("/api/blog", blog);
+app.use("/api/faqs", faqsRoutes);
 
 
 //Exporto la constante para usar express en todos lados.

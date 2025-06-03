@@ -71,7 +71,7 @@ faqsController.putFaqs = async(req, res) =>{
 //DELETE********************************************************************************************
 faqsController.deleteFaqs = async(req, res) =>{
     try {
-        const deletedFaqs = await FaqsModel.findByIdAndUpdate(req.params.id)
+        const deletedFaqs = await FaqsModel.findByIdAndDelete(req.params.id)
 
         if(!deletedFaqs){
             return res.status(400).json({message: "faqs not found"})
