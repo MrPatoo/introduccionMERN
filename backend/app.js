@@ -16,6 +16,7 @@ import blog from "./src/routes/blog.js";
 import { validateAuthToken } from "./src/middlewares/validateAuthToken.js";
 import cors from "cors"
 import faqsRoutes from "./src/routes/faqs.js";
+import salesRoutes from "./src/routes/sales.js"
 
  
 
@@ -51,6 +52,7 @@ app.use("/api/registerClients", registerClients);
 app.use("/api/passwordRecovery", passwordRecoveryRoutes);
 app.use("/api/blog", blog);
 app.use("/api/faqs", faqsRoutes);
+app.use("/api/sales", salesRoutes);
 
 
 //Exporto la constante para usar express en todos lados.
