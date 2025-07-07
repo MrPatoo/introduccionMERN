@@ -78,9 +78,12 @@ salesController.getMostSalledProducts = async(req, res)=>{
                     //ordenar
                     $sort: {totalventas: -1},
 
+                   
+                },{
                     //limitar
                     $limit: 3
                 }
+                 
             ]
         )
         res.status(200).json(resultado)

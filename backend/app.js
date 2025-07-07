@@ -28,7 +28,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: "https://zgas-cgmx.onrender.com", //lo pueden manipular todos
+        origin: "https://zgas-cgmx.onrender.com", //lo pueden manipular
         credentials: true,
     })
 )
