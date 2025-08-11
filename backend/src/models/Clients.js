@@ -63,7 +63,18 @@ const clientsSchema = new Schema({
     isVerified:{
         type: Boolean,
         require: true
+    },
+
+    loginAttemps:{
+        type: Number,
+        defauld: 0
+    },
+
+    lockTime: {
+        type: Date,
+        default: null
     }
+
 },{
     //tabla auditoria PRO
     timestamps: true,

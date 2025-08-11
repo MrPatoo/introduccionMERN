@@ -37,14 +37,40 @@ loginController.login = async (req, res) =>{
             return res.json({message: "User not found"});
         }
 
+        //Verificamos si el usuario esta bloqueado
+        if(userType !== "Admin"){
+            if(userFound.lockTime > Date.now){
+                //minutos restantes
+                const minutosRestantes = Math.ceil( (userFound.lockTime - Date.now()) / 60000)
+                return res.status(403).json(
+                    {message: "Su cuenta ha sido suspendida por " + minutosRestantes + " minutos"}
+                )
+            }
+        }
+
         //validar la contraseña
         //solo si no es admin
         if(userType !== "admin"){
             //veamos si la contraseña que se esta escribiendo en el login es la misma que la que esta en la base de datos
             const isMatch = await bcrypt.compare(password, userFound.password)
             if(!isMatch){
+                //si se equivoca de contraseña suma 1 a los intentos
+                userFound.loginAttemps = userFound.loginAttemps + 1
+
+                //si sobrepasa los intentos permitidos
+                if(userFound.loginAttemps > 5){     //lo bloquea 15 minutos
+                    userFound.lockTime = Date.now() + 15 * 60 * 1000
+                    await userFound.save();
+                    return res.status(403).json({message: "Cuenta bloqueada"})
+                }
+
                 return res.json({message: "Contraseña incorrecta"})
             }
+
+            //si el inicio de sesión es valido se reinicia el contador
+            userFound.loginAttemps = 0;
+            userFound.lockTime = null;
+            await userFound.save();
             
            }
 
@@ -64,7 +90,7 @@ loginController.login = async (req, res) =>{
                 if(error) console.log(error)
 
                     res.cookie("authToken", token)
-                    res.json({message: "login successful"})
+                    res.json({message: "login successfull"})
             }
            )
         
